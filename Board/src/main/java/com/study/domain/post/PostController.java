@@ -20,10 +20,11 @@ public class PostController {
     // 게시글 작성 페이지
     @GetMapping("/post/write.do")
     public String openPostWrite(@RequestParam(value = "id", required = false) final Long id, Model model) {
-    	if (id != null) {
+    	if (id != null) {	//글수정. 글의 데이터를 모델에 담음
             PostResponse post = postService.findPostById(id);
             model.addAttribute("post", post);
         }
+    	//null이면 글신규작성. 모델에 담을 데이터가 없음.
         return "post/write";
     }
     
@@ -40,6 +41,14 @@ public class PostController {
         List<PostResponse> posts = postService.findAllPost();
         model.addAttribute("posts", posts);
         return "post/list";
+    }
+    
+    // 게시글 상세 페이지
+    @GetMapping("/post/view.do")
+    public String openPostView(@RequestParam final Long id, Model model) {
+        PostResponse post = postService.findPostById(id);
+        model.addAttribute("post", post);
+        return "post/view";
     }
 
 }
