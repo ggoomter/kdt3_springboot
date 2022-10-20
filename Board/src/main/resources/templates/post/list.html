@@ -73,7 +73,8 @@
             /*<![CDATA[*/
 
             window.onload = () => {
-                findAllPost();
+            	setQueryStringParams();
+            	findAllPost();
             }
 
 
@@ -165,6 +166,27 @@
 		        }
 		
 		        location.href = location.pathname + '?' + new URLSearchParams(queryParams).toString();
+		    }
+            
+		    // 쿼리 스트링 파라미터 셋팅
+		    function setQueryStringParams() {
+
+		        if ( !location.search ) {
+		            return false;
+		        }
+
+		        const form = document.getElementById('searchForm');
+
+		        //Location 객체는 문서의 주소와 관련된 객체로 Window 객체의 프로퍼티
+		        //location.search를 이용하여 URL 물음표 뒤에 있는 파라미터들을 가져올 수 있다.
+		        //쿼리스트링은 URL주소?키=밸류&키=밸류
+		        new URLSearchParams(location.search).forEach((value, key) => {
+		            if (form[key]) {
+		                form[key].value = value;//쿼리스트링에서 키,값을 뽑아서 form을 동적으로 생성하고 값을 채워줌
+		            }
+		        })
+
+		        document.getElementById('mainKeyword').value = form.keyword.value;
 		    }
 
             /*]]>*/
