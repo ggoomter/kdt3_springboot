@@ -34,12 +34,7 @@ public class PostController {
     // 신규 게시글 생성
     @PostMapping("/post/save.do")
     public String savePost(final PostRequest params, Model model) {
-        try {
-			postService.savePost(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        postService.savePost(params);
         MessageDto message = new MessageDto("게시글 생성이 완료되었습니다.", "/post/list.do", RequestMethod.GET, null);
         return showMessageAndRedirect(message, model);
     }

@@ -18,20 +18,10 @@ public class PostService {
      * 게시글 저장
      * @param params - 게시글 정보
      * @return Generated PK
-     * @throws Exception 
      */
-    @Transactional(rollbackOn = {Exception.class})
-    public Long savePost(final PostRequest params) throws Exception {
-    	try {
-			System.out.println("하하하");
-			postMapper.save(params);
-			System.out.println("해해해");
-			
-			System.out.println(3/0);
-			System.out.println("쿠쿠쿠");
-		} catch (Exception e) {
-			throw new Exception(e.getMessage());
-		}
+    @Transactional
+    public Long savePost(final PostRequest params) {
+        postMapper.save(params);
         return params.getId();
     }
 

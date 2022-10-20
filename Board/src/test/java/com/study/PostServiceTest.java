@@ -22,8 +22,8 @@ public class PostServiceTest {
         params.setContent("1번 게시글 내용");
         params.setWriter("테스터");
         params.setNoticeYn(false);
-        //Long newPostId = postService.savePost(params);
-        //System.out.println("생성된 게시글 ID : "+newPostId);
+        Long newPostId = postService.savePost(params);
+        System.out.println("생성된 게시글 ID : "+newPostId);
     }
     
     @Test
