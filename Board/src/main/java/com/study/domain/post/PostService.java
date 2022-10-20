@@ -7,6 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.study.common.dto.SearchDto;
+import com.study.paging.Pagination;
+import com.study.paging.PagingResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -62,8 +64,13 @@ public class PostService {
      * @param params - search conditions
      * @return 게시글 리스트
      */
-    public List<PostResponse> findAllPost(final SearchDto params) {
-        return postMapper.findAll(params);
+    public PagingResponse<PostResponse> findAllPost(final SearchDto params) {
+    	int count = postMapper.count(params);
+    	Pagination pagination = new Pagination(count, params);
+    	params.setPagination(pagination);
+    	
+    	List<PostResponse> list = postMapper.findAll(params);
+        return new PagingResponse<>(list, pagination);
     }
 
 }
