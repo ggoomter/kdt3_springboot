@@ -58,7 +58,7 @@ public class PostController {
     // 기존 게시글 수정
     @PostMapping("/post/update.do")
     public String updatePost(final PostRequest params, Model model) {
-        postService.updatePost(params);
+    	postService.updatePost(params);
         MessageDto message = new MessageDto("게시글 수정이 완료되었습니다.", "/post/list.do", RequestMethod.GET, null);
         return showMessageAndRedirect(message, model);
     }
