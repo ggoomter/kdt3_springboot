@@ -3,6 +3,7 @@ package com.study;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.study.domain.post.PostRequest;
@@ -21,8 +22,8 @@ public class PostServiceTest {
         params.setContent("1번 게시글 내용");
         params.setWriter("테스터");
         params.setNoticeYn(false);
-        Long newPostId = postService.savePost(params);
-        System.out.println("생성된 게시글 ID : "+newPostId);
+        //Long newPostId = postService.savePost(params);
+        //System.out.println("생성된 게시글 ID : "+newPostId);
     }
     
     @Test
@@ -36,14 +37,24 @@ public class PostServiceTest {
     	params.setNoticeYn(false);
     	System.out.println("테스트 데이터 준비됨");
 
-    	//2. 테스트 실행
-		postService.savePost(params);	//글삽입 또는 수정
-		System.out.println("글 삽입 또는 수정 함수 실행됨33");
+    	
+		try {
+			//2. 테스트 실행
+			postService.savePost(params);	//글삽입 또는 수정
+			System.out.println("글 삽입 또는 수정 함수 실행됨33");
+			
+			//3. 테스트결과 활용
+			//의도적으로 널로 바꾼다음 에러 터지게함
+			//params = null;
+			//System.out.println("의도적 null뒤 : "+params.getTitle());	//널포인트 익셉션 터짐
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("파이널리 실행");
+		}
+		System.out.println("파이널리 바깥 실행");
 		
-		//3. 테스트결과 활용
-		//의도적으로 널로 바꾼다음 에러 터지게함
-		//params = null;
-		//System.out.println("의도적 null뒤 : "+params.getTitle());	//널포인트 익셉션 터짐
+
 
 	}
 }
