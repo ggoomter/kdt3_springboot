@@ -35,6 +35,7 @@ public class PostService {
      * @return 게시글 상세정보
      */
     public PostResponse findPostById(final Long id) {
+    	postMapper.viewCount(id);	//상세조회하면 글조회수 1증가
         return postMapper.findById(id);
     }
 
@@ -72,5 +73,7 @@ public class PostService {
     	List<PostResponse> list = postMapper.findAll(params);
         return new PagingResponse<>(list, pagination);
     }
+    
+
 
 }

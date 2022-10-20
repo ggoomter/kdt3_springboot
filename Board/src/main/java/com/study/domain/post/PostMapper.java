@@ -46,4 +46,11 @@ public interface PostMapper {
      * @return 게시글 수
      */
     int count(SearchDto params);
+    
+    
+    /**
+     * 상세글 보기 하면 조회수 1증가
+     * @param params
+     */
+    void viewCount(Long id);
 }

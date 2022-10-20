@@ -91,5 +91,13 @@
         WHERE
             delete_yn = 0
     </select>
+    
+    
+    <!-- 게시글 상세조회하면 조회수 1증가 -->
+    <update id="viewCount" parameterType="long">
+    	UPDATE tb_post
+		   SET view_cnt =  view_cnt+1
+		 WHERE id=#{id}
+    </update>
 
 </mapper>
