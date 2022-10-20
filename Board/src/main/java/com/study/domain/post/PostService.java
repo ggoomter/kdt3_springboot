@@ -6,6 +6,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.study.common.dto.SearchDto;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -57,10 +59,11 @@ public class PostService {
 
     /**
      * 게시글 리스트 조회
+     * @param params - search conditions
      * @return 게시글 리스트
      */
-    public List<PostResponse> findAllPost() {
-        return postMapper.findAll();
+    public List<PostResponse> findAllPost(final SearchDto params) {
+        return postMapper.findAll(params);
     }
 
 }
