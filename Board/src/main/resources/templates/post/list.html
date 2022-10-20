@@ -103,8 +103,8 @@
                 // 첫 페이지, 이전 페이지
                 if (pagination.existPrevPage) {
                     html += `
-                        <li><a href="javascript:void(0)" onclick="movePage(1);" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                        <li><a href="javascript:void(0)" onclick="movePage(${pagination.startPage - 1});" aria-label="Previous"><span aria-hidden="true">&lsaquo;</span></a></li>
+                        <li><a href="javascript:void(0)" onclick="movePage(1);" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>	/* 왼쪽꺾쇠2개 */
+                        <li><a href="javascript:void(0)" onclick="movePage(${pagination.startPage - 1});" aria-label="Previous"><span aria-hidden="true">&lsaquo;</span></a></li> /* 왼쪽꺽쇠1개 */
                     `;
                 }
 
